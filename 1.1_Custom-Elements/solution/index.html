@@ -14,7 +14,39 @@
       4- Register the element so you can use it.
       5- Use the element.
       6- Make the attributeChangedCallback work!
+      7- Make the disconecctedCallback work!
     -->
-    <script></script>
+
+    <hello-world a="5" c="keepcoding"></hello-world>
+
+    <script>
+      class HelloWorld extends HTMLElement {
+        constructor() {
+          super(); // Ejecución del constructor de la clase que extendemos
+          console.log("constructor");
+        }
+
+        connectedCallback() {
+          console.log("connectedCallback");
+        }
+
+        static get observedAttributes() {
+          return ["a", "b"];
+        }
+
+        attributeChangedCallback(attributeName, oldValue, newValue) {
+          console.log(
+            `La propiedad ${attributeName} ha cambiado de ${oldValue} a ${newValue}`
+          );
+        }
+
+        disconnectedCallback() {
+          console.log("disconnectedCallback");
+        }
+      } 
+
+      // CUSTOM ELEMENTS
+      window.customElements.define("hello-world", HelloWorld);
+    </script>
   </body>
 </html>
